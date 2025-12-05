@@ -60,6 +60,13 @@
   margin-right: 8px;
 }
 
+.recommendation-banner {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
 .mini-stream-name {
   color: white;
   font-size: 14px;

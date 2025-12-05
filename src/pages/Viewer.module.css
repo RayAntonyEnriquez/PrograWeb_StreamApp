@@ -91,6 +91,19 @@
   height: 100%;
 }
 
+.bannerStack {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.bannerImage {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #0b0b12;
+}
+
 .tabs {
   display: flex;
   gap: 8px;

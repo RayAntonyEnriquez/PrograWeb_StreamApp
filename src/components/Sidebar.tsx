@@ -4,6 +4,7 @@ import inicio from "../assets/inicio.png";
 import nosotros from "../assets/nosotros.png";
 import tienda from "../assets/tienda.png";
 import terminos from "../assets/terminos.png";
+import canales from "../assets/canales.png";
 import "./Sidebar.css";
 
 interface SidebarProps {
@@ -69,6 +70,11 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
 
       <div className="recommendations">
         <h4>Recomendaciones</h4>
+        <img
+          src={canales}
+          alt="Canales recomendados"
+          className="recommendation-banner"
+        />
         <p className="mini-stream-name">Se cargarán desde el backend.</p>
       </div>
     </aside>

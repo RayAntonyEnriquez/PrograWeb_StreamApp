@@ -6,6 +6,8 @@ import { FaGift, FaSync } from "react-icons/fa";
 import { api } from "../services/api";
 import { useAuth } from "../app/auth";
 import perfil from "../assets/perfil.jpg";
+import categoriaImg from "../assets/categoria.png";
+import streamsImg from "../assets/streams.png";
 
 export default function StreamViewer() {
   const { room = "mi-sala" } = useParams();
@@ -164,6 +166,19 @@ export default function StreamViewer() {
             </div>
           </div>
 
+          <div className={viewerStyles.bannerStack}>
+            <img
+              src={categoriaImg}
+              alt="Categorías destacadas"
+              className={viewerStyles.bannerImage}
+            />
+            <img
+              src={streamsImg}
+              alt="Streams recomendados"
+              className={viewerStyles.bannerImage}
+            />
+          </div>
+
           <div className={viewerStyles.tabs}>
             <button className={viewerStyles.tabActive}>Acerca de</button>
             <button className={viewerStyles.tab}>Recomendado</button>
@@ -302,6 +317,5 @@ export default function StreamViewer() {
     </div>
   );
 }
-
 
 

@@ -101,6 +101,22 @@
   margin: 20px 0;
 }
 
+.static-banner {
+  width: 95%;
+  max-width: 1300px;
+  margin: 10px auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.banner-img {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #0b0b12;
+}
+
 .mini-streams {
   display: flex;
   gap: 15px;
