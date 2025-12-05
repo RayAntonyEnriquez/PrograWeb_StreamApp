@@ -1,7 +1,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 import { AuthProvider } from "./app/auth";
@@ -24,7 +24,7 @@ import StreamViewer from "./pages/StreamViewer";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/live/:channel" element={<StreamPage />} />
           <Route element={<App />}>
@@ -84,7 +84,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="register" element={<Register />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </AuthProvider>
   </React.StrictMode>
 );

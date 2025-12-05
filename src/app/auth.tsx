@@ -83,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     persist(null, null);
     // Redirigir siempre al home después de cerrar sesión
     if (typeof window !== "undefined") {
-      window.location.href = "/";
+      window.location.href = import.meta.env.BASE_URL || "/";
     }
   };
 
