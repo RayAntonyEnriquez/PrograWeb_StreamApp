@@ -13,7 +13,7 @@ function App() {
   // ✨ 2. USAMOS EL CONTEXTO EN LUGAR DE useState LOCAL
   // 'user' viene directamente del AuthProvider (verdad única)
   // 'logout', 'login', y 'register' también vienen de ahí.
-  const { user, login, register, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   // Estos estados visuales (modales) sí se quedan aquí porque son locales de la UI
   const [showLogin, setShowLogin] = useState(false);
@@ -24,7 +24,7 @@ function App() {
   // (Ya no necesitamos leer localStorage aquí manualmente)
 
   // Wrappers para conectar los modales con la lógica del AuthProvider
-  const handleLoginSubmit = async (userData: any) => {
+  const handleLoginSubmit = async () => {
     // userData viene de tu modal como objeto, pero tu auth.login espera (email, pass)
     // Asumiendo que tus modales ya llaman a la API, aquí solo cerramos
     // NOTA: Si tus modales llaman a useAuth() internamente, aquí solo necesitas cerrar los modales.
@@ -32,7 +32,7 @@ function App() {
     setOverlayMessage(`¡Bienvenido de nuevo!`);
   };
   
-  const handleRegisterSubmit = async (userData: any) => {
+  const handleRegisterSubmit = async () => {
      setShowRegister(false);
      setOverlayMessage("¡Cuenta creada con éxito!");
   };

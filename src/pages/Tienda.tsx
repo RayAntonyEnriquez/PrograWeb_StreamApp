@@ -7,7 +7,7 @@ import { api } from "../services/api";
 import { useAuth } from "../app/auth";
 
 type Pack = { id: number; coins: number; precio: number; nombre?: string; descripcion?: string };
-type RouletteReward = { type: "coins" | "points"; amount: number; label: string; short: string; color: string };
+type RouletteReward = { type: "coins" | "points"; amount: number; label: string; short?: string; color?: string };
 
 const rewardOptions: RouletteReward[] = [
   { type: "coins", amount: 50, label: "+50 monedas", short: "50c", color: "#6B99FE" },
@@ -33,7 +33,6 @@ const Tienda = () => {
   const [rouletteUsed, setRouletteUsed] = useState(false);
   const [spinning, setSpinning] = useState(false);
   const [spinAngle, setSpinAngle] = useState(0);
-  const rouletteLabels = rewardOptions.map((r) => r.short);
   const rouletteGradient = `conic-gradient(${rewardOptions
     .map((r, idx) => {
       const start = (idx * 360) / rewardOptions.length;

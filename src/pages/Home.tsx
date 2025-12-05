@@ -58,7 +58,6 @@ const Home: React.FC = () => {
     loadStreams();
   }, []);
 
-  const irAlStream = (channel?: string) => navigate(`/live/${channel ?? "canal"}`);
   const irAVer = (stream: Stream) => {
     // Usar el mismo esquema de room/scene que stream-setup y VDO Ninja
     const room = `stream${stream.id}`;

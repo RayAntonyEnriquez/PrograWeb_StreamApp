@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import OverlayNotification from "../components/OverlayNotification";
 import { FaBolt, FaRegClock, FaWalking, FaSave, FaUserPlus, FaStar, FaGift } from "react-icons/fa";
-import { api, type StreamerProgress, type StreamerDashboard, type ViewerRule } from "../services/api";
+import { api, type StreamerProgress, type ViewerRule } from "../services/api";
 import { useAuth } from "../app/auth";
 
 type ActivityItem = { tipo: string; descripcion: string };
@@ -12,36 +12,28 @@ const Dashboard = () => {
   const { user, tokens } = useAuth();
   const streamerId = useMemo(() => user?.perfilId ?? Number(import.meta.env.VITE_DEFAULT_STREAMER_ID ?? 0), [user?.perfilId]);
   const [progress, setProgress] = useState<StreamerProgress | null>(null);
-  const [dashboard, setDashboard] = useState<StreamerDashboard | null>(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [activeStreamId, setActiveStreamId] = useState<number | null>(null);
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [activities, setActivities] = useState<ActivityItem[]>([]);
   const [viewerRules, setViewerRules] = useState<ViewerRule[]>([]);
   const [savingRuleId, setSavingRuleId] = useState<number | null>(null);
   const navigate = useNavigate();
-  const [showEmbed, setShowEmbed] = useState(false);
+  const activeStreamId = null;
 
   const fetchData = async () => {
     if (!streamerId) return;
-    setLoading(true);
     setError(null);
     try {
-      const [prog, dash, acts, rules] = await Promise.all([
+      const [prog, acts, rules] = await Promise.all([
         api.getStreamerProgreso(streamerId, tokens?.accessToken),
-        api.getStreamerDashboard(user?.id ?? 0, tokens?.accessToken),
         api.getStreamerActividad(streamerId, 10, tokens?.accessToken),
         api.listViewerRules(tokens?.accessToken),
       ]);
       setProgress(prog);
-      setDashboard(dash);
       setActivities(acts?.items ?? []);
       setViewerRules(rules ?? []);
     } catch (err: any) {
       setError("No se pudo cargar el dashboard. Verifica el backend o el usuario.");
-    } finally {
-      setLoading(false);
     }
   };
 
