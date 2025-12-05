@@ -4,7 +4,6 @@ import "./Home.css";
 import liveIcon from "../assets/live.png";
 import perfil from "../assets/perfil.jpg";
 import fallbackStreamImg from "../assets/stream1.jpg";
-import canalesImg from "../assets/canales.png";
 import categoriaImg from "../assets/categoria.png";
 import streamsImg from "../assets/streams.png";
 import { request } from "../services/http";
@@ -49,7 +48,6 @@ const Home: React.FC = () => {
     loadStreams();
   }, []);
 
-  const irAlStream = (channel?: string) => navigate(`/live/${channel ?? "canal"}`);
   const irAVer = (stream: Stream) => {
     // Usar el mismo esquema de room/scene que stream-setup y VDO Ninja
     const room = `stream${stream.id}`;
