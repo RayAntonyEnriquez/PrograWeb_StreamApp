@@ -26,21 +26,30 @@ jobs:
         with:
           node-version: 20
 
+      - name: Detect frontend directory
+        run: |
+          if [ -d PrograWeb_StreamApp ]; then
+            echo "FRONT_DIR=PrograWeb_StreamApp" >> $GITHUB_ENV
+          else
+            echo "FRONT_DIR=." >> $GITHUB_ENV
+          fi
+
       - name: Install
-        run: npm install
-        working-directory: PrograWeb_StreamApp
+        run: |
+          cd "$FRONT_DIR"
+          npm install
 
       - name: Build
         run: |
+          cd "$FRONT_DIR"
           echo "VITE_API_URL=https://prograweb-streamapp-backend.onrender.com" >> .env.production
           echo "BASE_PATH=/PrograWeb_StreamApp/" >> .env.production
           npm run build
-        working-directory: PrograWeb_StreamApp
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: PrograWeb_StreamApp/dist
+          path: ${{ env.FRONT_DIR }}/dist
 
   deploy:
     needs: build
